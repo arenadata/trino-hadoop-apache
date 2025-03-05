@@ -10,7 +10,7 @@
 
     <groupId>io.trino.hadoop</groupId>
     <artifactId>hadoop-apache</artifactId>
-    <version>3.3.5-4-SNAPSHOT</version>
+    <version>3.3.6-1</version>
 
     <name>hadoop-apache</name>
     <description>Shaded version of Apache Hadoop for Trino</description>
@@ -42,7 +42,7 @@
         <project.build.targetJdk>21</project.build.targetJdk>
         <shadeBase>io.trino.hadoop.\$internal</shadeBase>
         <dep.slf4j.version>1.7.36</dep.slf4j.version>
-        <dep.hadoop.version>3.3.5</dep.hadoop.version>
+        <dep.hadoop.version>3.3.6</dep.hadoop.version>
     </properties>
 
     <dependencies>
@@ -478,7 +478,7 @@
                                 </relocation>
                                 <relocation>
                                     <pattern>com.google.protobuf</pattern>
-                                    <shadedPattern>${shadeBase}.com.google.protobuf</shadedPattern>
+                                    <shadedPattern>org.apache.hadoop.thirdparty.protobuf</shadedPattern>
                                 </relocation>
                                 <relocation>
                                     <pattern>com.google.gson</pattern>
@@ -503,10 +503,6 @@
                                 <relocation>
                                     <pattern>org.codehaus.stax2</pattern>
                                     <shadedPattern>${shadeBase}.org.codehaus.stax2</shadedPattern>
-                                </relocation>
-                                <relocation>
-                                    <pattern>org.apache.hadoop.thirdparty</pattern>
-                                    <shadedPattern>${shadeBase}.org.apache.hadoop.thirdparty</shadedPattern>
                                 </relocation>
                                 <relocation>
                                     <pattern>org.apache.log4j</pattern>

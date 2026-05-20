@@ -526,6 +526,10 @@
                                     <shadedPattern>${shadeBase}.org.apache.kerby</shadedPattern>
                                 </relocation>
                                 <relocation>
+                                    <pattern>org.bouncycastle</pattern>
+                                    <shadedPattern>${shadeBase}.org.bouncycastle</shadedPattern>
+                                </relocation>
+                                <relocation>
                                     <pattern>org.wildfly.openssl</pattern>
                                     <shadedPattern>${shadeBase}.org.wildfly.openssl</shadedPattern>
                                 </relocation>
@@ -540,6 +544,10 @@
                                 <relocation>
                                     <pattern>com.google.re2j</pattern>
                                     <shadedPattern>${shadeBase}.com.google.re2j</shadedPattern>
+                                </relocation>
+                                <relocation>
+                                    <pattern>com.codahale.metrics</pattern>
+                                    <shadedPattern>${shadeBase}.com.codahale.metrics</shadedPattern>
                                 </relocation>
                                 <relocation>
                                     <pattern>com.fasterxml.jackson</pattern>

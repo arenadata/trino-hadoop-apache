@@ -10,7 +10,7 @@
 
     <groupId>io.trino.hadoop</groupId>
     <artifactId>hadoop-apache</artifactId>
-    <version>3.4.3.1-4.3.0-2</version>
+    <version>3.4.3.1-4.3.0-3</version>
 
     <name>hadoop-apache</name>
     <description>Shaded version of Apache Hadoop for Trino</description>
@@ -599,6 +599,14 @@
                                     <pattern>javax.activation</pattern>
                                     <shadedPattern>${shadeBase}.javax.activation</shadedPattern>
                                 </relocation>
+                                <relocation>
+                                    <pattern>software.amazon</pattern>
+                                    <shadedPattern>${shadeBase}.software.amazon</shadedPattern>
+                                </relocation>
+                                <relocation>
+                                    <pattern>org.reactivestreams</pattern>
+                                    <shadedPattern>${shadeBase}.org.reactivestreams</shadedPattern>
+                                </relocation>
                             </relocations>
                             <filters>
                                 <filter>
@@ -629,7 +637,6 @@
                                     <artifact>software.amazon.awssdk:bundle</artifact>
                                     <includes>
                                         <include>META-INF/services/**</include>
-                                        <include>mime.types</include>
                                         <include>mozilla/public-suffix-list.txt</include>
                                         <include>org/reactivestreams/**</include>
                                         <include>software/amazon/eventstream/**</include>
@@ -662,6 +669,15 @@
                                         <include>software/amazon/awssdk/utils/**</include>
                                         <include>software/amazon/awssdk/utilslite/**</include>
                                     </includes>
+                                    <excludes>
+                                        <exclude>software/amazon/awssdk/services/s3/execution.interceptors</exclude>
+                                    </excludes>
+                                </filter>
+                                <filter>
+                                    <artifact>software.amazon.s3.analyticsaccelerator:analyticsaccelerator-s3</artifact>
+                                    <excludes>
+                                        <exclude>parquet.thrift</exclude>
+                                    </excludes>
                                 </filter>
                                 <filter>
                                     <artifact>com.fasterxml.woodstox:woodstox-core</artifact>

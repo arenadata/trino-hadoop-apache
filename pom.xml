@@ -10,7 +10,7 @@
 
     <groupId>io.trino.hadoop</groupId>
     <artifactId>hadoop-apache</artifactId>
-    <version>3.4.3.1-4.3.0-1</version>
+    <version>3.4.3.1-4.3.0-2</version>
 
     <name>hadoop-apache</name>
     <description>Shaded version of Apache Hadoop for Trino</description>
@@ -288,6 +288,18 @@
                 <exclusion>
                     <groupId>org.slf4j</groupId>
                     <artifactId>slf4j-reload4j</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.hadoop</groupId>
+            <artifactId>hadoop-aws</artifactId>
+            <version>${dep.hadoop.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.wildfly.openssl</groupId>
+                    <artifactId>wildfly-openssl</artifactId>
                 </exclusion>
             </exclusions>
         </dependency>
@@ -612,6 +624,44 @@
                                     <excludes>
                                         <exclude>META-INF/services/**</exclude>
                                     </excludes>
+                                </filter>
+                                <filter>
+                                    <artifact>software.amazon.awssdk:bundle</artifact>
+                                    <includes>
+                                        <include>META-INF/services/**</include>
+                                        <include>mime.types</include>
+                                        <include>mozilla/public-suffix-list.txt</include>
+                                        <include>org/reactivestreams/**</include>
+                                        <include>software/amazon/eventstream/**</include>
+                                        <include>software/amazon/awssdk/annotations/**</include>
+                                        <include>software/amazon/awssdk/arns/**</include>
+                                        <include>software/amazon/awssdk/auth/**</include>
+                                        <include>software/amazon/awssdk/awscore/**</include>
+                                        <include>software/amazon/awssdk/checksums/**</include>
+                                        <include>software/amazon/awssdk/core/**</include>
+                                        <include>software/amazon/awssdk/crtcore/**</include>
+                                        <include>software/amazon/awssdk/endpoints/**</include>
+                                        <include>software/amazon/awssdk/enhanced/**</include>
+                                        <include>software/amazon/awssdk/eventnotifications/**</include>
+                                        <include>software/amazon/awssdk/http/**</include>
+                                        <include>software/amazon/awssdk/identity/**</include>
+                                        <include>software/amazon/awssdk/imds/**</include>
+                                        <include>software/amazon/awssdk/internal/**</include>
+                                        <include>software/amazon/awssdk/metrics/**</include>
+                                        <include>software/amazon/awssdk/policybuilder/**</include>
+                                        <include>software/amazon/awssdk/profiles/**</include>
+                                        <include>software/amazon/awssdk/protocols/**</include>
+                                        <include>software/amazon/awssdk/regions/**</include>
+                                        <include>software/amazon/awssdk/retries/**</include>
+                                        <include>software/amazon/awssdk/s3accessgrants/**</include>
+                                        <include>software/amazon/awssdk/services/kms/**</include>
+                                        <include>software/amazon/awssdk/services/s3/**</include>
+                                        <include>software/amazon/awssdk/services/sts/**</include>
+                                        <include>software/amazon/awssdk/thirdparty/**</include>
+                                        <include>software/amazon/awssdk/transfer/**</include>
+                                        <include>software/amazon/awssdk/utils/**</include>
+                                        <include>software/amazon/awssdk/utilslite/**</include>
+                                    </includes>
                                 </filter>
                                 <filter>
                                     <artifact>com.fasterxml.woodstox:woodstox-core</artifact>

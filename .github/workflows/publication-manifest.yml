@@ -32,7 +32,7 @@ jobs:
           server-password: GITHUB_TOKEN
       - name: Redirect the publisher to a sandbox
         id: sandbox
-        uses: arenadata/adrm-checks/actions/sandbox@e63ce686a8c4235104f56ea292e47b9003acbd9a
+        uses: arenadata/adrm-checks/actions/sandbox@6be18fed3f222b843af0e9fcbf8bc7306047dedd
         with:
           tool: maven
           deploy-plugin-major: '3'   # pom.xml pins maven-deploy-plugin 3.0.0-M1
@@ -42,7 +42,7 @@ jobs:
         run: mvn clean deploy -B -V
       - name: Generate the manifest from the sandbox
         id: manifest
-        uses: arenadata/adrm-checks/actions/manifest@e63ce686a8c4235104f56ea292e47b9003acbd9a
+        uses: arenadata/adrm-checks/actions/manifest@6be18fed3f222b843af0e9fcbf8bc7306047dedd
         with:
           sandbox: ${{ steps.sandbox.outputs.dir }}
           invocations: '1'
@@ -50,6 +50,8 @@ jobs:
         if: steps.manifest.outputs.changed == 'true' && github.event_name == 'workflow_dispatch'
         uses: peter-evans/create-pull-request@22a9089034f40e5a961c8808d113e2c98fb63676 # v7
         with:
+          # Commit only the manifest: the publisher build may leave other files in the tree (shade plugin, caches).
+          add-paths: .readiness/publication.yaml
           branch: readiness/publication-manifest
           title: 'readiness: refresh publication manifest'
           commit-message: 'readiness: refresh publication manifest from the publisher sandbox'

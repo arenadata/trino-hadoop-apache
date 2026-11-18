@@ -10,7 +10,7 @@
 
     <groupId>io.trino.hadoop</groupId>
     <artifactId>hadoop-apache</artifactId>
-    <version>3.4.3.2-4.4.0-1</version>
+    <version>3.4.3.2-4.5.0-2</version>
 
     <name>hadoop-apache</name>
     <description>Shaded version of Apache Hadoop for Trino</description>
@@ -40,9 +40,9 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.build.targetJdk>21</project.build.targetJdk>
-        <shadeBase>io.trino.hadoop.\$internal</shadeBase>
+        <shadeBase>io.trino.hadoop.internal</shadeBase>
         <dep.slf4j.version>1.7.36</dep.slf4j.version>
-        <dep.hadoop.version>3.4.3.2-4.4.0-1</dep.hadoop.version>
+        <dep.hadoop.version>3.4.3.3-4.5.0-1</dep.hadoop.version>
     </properties>
 
     <dependencyManagement>
@@ -50,12 +50,12 @@
             <dependency>
                 <groupId>com.fasterxml.jackson.core</groupId>
                 <artifactId>jackson-core</artifactId>
-                <version>2.18.10</version>
+                <version>2.18.11</version>
             </dependency>
             <dependency>
                 <groupId>com.google.guava</groupId>
                 <artifactId>guava</artifactId>
-                <version>33.5.0-jre</version>
+                <version>33.7.2-jre</version>
             </dependency>
             <dependency>
                 <groupId>commons-codec</groupId>
@@ -331,7 +331,7 @@
         <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
-            <version>33.5.0-jre</version>
+            <version>33.7.2-jre</version>
             <exclusions>
                 <exclusion>
                     <groupId>com.google.guava</groupId>
@@ -347,7 +347,7 @@
         <dependency>
             <groupId>org.xerial.snappy</groupId>
             <artifactId>snappy-java</artifactId>
-            <version>1.1.10.4</version>
+            <version>1.1.10.12</version>
         </dependency>
 
         <dependency>
@@ -472,6 +472,25 @@
                 <configuration>
                     <useAgent>true</useAgent>
                 </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <version>3.0.0-M3</version>
+                <configuration>
+                    <systemPropertyVariables>
+                        <shadedJarPath>${project.build.directory}/${project.build.finalName}.jar</shadedJarPath>
+                    </systemPropertyVariables>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>integration-test</goal>
+                            <goal>verify</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
 
             <plugin>
